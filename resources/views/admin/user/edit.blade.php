@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <a href="" class="btn btn-sm btn-warning mb-3">Back</a>
+    <a href="{{ route('home') }}" class="btn btn-sm btn-warning mb-3">Back</a>
     <form action="{{ url('admin/user/'.$user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
