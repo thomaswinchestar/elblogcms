@@ -27,6 +27,7 @@
             border: blanchedalmond;
         }
     </style>
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -125,5 +126,7 @@
             </div>
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    @yield('script')
 </body>
 </html>
