@@ -14,17 +14,17 @@
         </div>
         <div class="form-group">
             <label for="">Choose Tag</label>
-            <div class="checkbox">
+            <div class="form-check">
                 @foreach($tags as $t)
-                    <label for="">
-                        {{$t->name}}
-                        <input type="checkbox" name="tags[]" value="{{ $t->id }}"
+                <input type="checkbox" class="form-check-input" name="tags[]" value="{{ $t->id }}"
                         @foreach($post->tags as $tag)
                             @if($tag->id == $t->id)
                                 checked
                             @endif
                         @endforeach
                         >
+                    <label class="form-check-label" style="padding-right: 28px;" for="">
+                        {{$t->name}}
                     </label>
                 @endforeach
             </div>
