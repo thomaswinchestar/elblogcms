@@ -26,7 +26,7 @@
         <div class="form-group">
             <label for="">Choose Image</label>
             <input type="file" name="image" class="form-control">
-            <img src="{{ asset('profile/'.$user->profile->profile_image) }}" alt="" style="width:150px; height: 150px;" class="mt-3">
+            <img src="{{ asset('profile/'.$user->profile->profile_image) }}" alt="" style="width:150px; height: 150px;" class="mt-3 rounded-circle">
         </div>
         <div class="form-group">
             <label for="">Enter About</label>

@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function create(){
+        return view('admin.user.add');
+    }
+
+    public function index(){
+        $users = User::all();
+        return view('admin.user.index',compact('users'));
+    }
+
     public function edit($id){
         $user = Auth::user();
         return view('admin.user.edit',compact('user'));
@@ -52,6 +61,35 @@ class UserController extends Controller
             if ($profile){
                 return redirect()->back()->with('success', 'User Profile Updated Successfullly');
             }
+        }
+    }
+
+    public function store(){
+        $this->validate(request(),[
+            'name'=>'required|min:3',
+            'email'=>'required|min:3',
+            'password'=>'required|min:6'
+        ]);
+        $user = new User();
+        $user->name = request()->name;
+        $user->password = bcrypt(request()->password);
+        $user->email = request()->email;
+        if($user->save()){
+            $profile = new Profile();
+            $profile->user_id = $user->id;
+            $profile->about = "About your information";
+            if($profile->save()){
+                return redirect('admin/user')->with('success', 'User created successfully!');
+            }
+        }
+    }
+
+    public function editRole($role,$user_id){
+        $user = User::where('id',$user_id)->update([
+            'is_admin' => $role
+        ]);
+        if($user){
+            return redirect()->back()->with('success', 'User Permission set successfully!');
         }
     }
 }
